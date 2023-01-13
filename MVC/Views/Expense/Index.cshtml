@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MVC.Models.ExpenseViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Expense List</h2>
+<div class="row">
+    <div>
+<p>
+
+    <a href="@Url.Action("AddOrEdit","Expense")" class="btn btn-primary"><i class=" fa fa-plus"></i>Add Expense</a>
+</p>
+<table class="table" style="border: 2px solid ;border-style:solid;border-color:orangered">
+
+    <tr class="info">
+
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpenseDate)
+        </th>
+        <th>Action</th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseDate)
+            </td>
+            <td>
+                <a href="@Url.Action("AddOrEdit","Expense", new {id=@item.ExpenseId} )" class="btn btn-warning btn-xs">Edit</a>|
+
+                <a onclick="Delete(@item.ExpenseId)" class="btn btn-danger btn-xs">Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>
+        </div>
+    
+</div>
+<a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Home</a>
+@section scripts{
+
+    <script>
+        $(function () {
+            var successmsg = '@TempData["SuccesMessage"]'
+            if (successmsg != '')
+                alertify.success(successmsg);
+        });
+
+        function Delete(id) {
+            alertify.confirm('Budget ', 'Are you Sure to delete ', function () {
+                window.location.href='@Url.Action("Delete","Expense")/' + id;
+            }, null);
+
+        }
+    </script>
+
+}
+

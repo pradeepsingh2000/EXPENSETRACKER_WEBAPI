@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MVC.Models.ExpenseCategory>
+
+@{
+    ViewBag.Title = "getexpenseByCategory";
+}
+
+<h2>Expense By Category</h2>
+<table class="table" style="border: 2px solid ;border-style:solid;border-color:orangered">
+
+    <tr class="info">
+
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ExpenseDate)
+        </th>
+
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseDate)
+            </td>
+
+        </tr>
+    }
+
+</table>
+<a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Home</a>
+
+
+<div>
+   
+</div>

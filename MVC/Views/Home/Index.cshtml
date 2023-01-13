@@ -1,0 +1,66 @@
+﻿@using MVC.Models
+@model mvcCategory
+
+
+<h2>Expense List</h2>
+<div>
+<div class="col-md-8">
+    @{
+
+        Html.RenderAction("list");
+    }
+</div>
+    <div class="col-md-4" style="margin-top:10px">
+    @{
+            Html.RenderAction("DropDown");
+
+    }
+   </div>
+</div>
+<div>
+    @{ 
+        Html.RenderAction("TotalExpenseLimit");
+    }
+</div>
+<div>
+    @{ 
+        Html.RenderAction("amount");
+    }
+</div>
+<div>
+    @{ 
+        Html.RenderAction("validation");
+    }
+</div>
+
+
+@section scripts{
+
+    <script>
+        $(function () {
+            var successmsg = '@TempData["SuccesMessage"]'
+            if (successmsg != '')
+                alertify.success(successmsg);
+        });
+
+        function Delete(id) {
+            alertify.confirm('Budget ', 'Are you Sure to delete ', function () {
+                window.location.href='@Url.Action("Delete","Expense")/' + id;
+            }, null);
+
+        }
+         var button = document.getElementById("Cat");
+        button.onclick = function () {
+            var select = document.getElementById("CategoryId");
+            
+            categoryid = select[select.selectedIndex].value; //value selected in select
+           
+
+            window.location.href='@Url.Action("getexpenseByCategory","Category")?categoryid=' + categoryid ;
+        }
+        
+    </script>
+
+}
+
+

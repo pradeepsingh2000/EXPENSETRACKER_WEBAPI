@@ -1,0 +1,46 @@
+﻿@model MVC.Models.ExpenseCategory
+@{
+    ViewBag.Title = "getCategoryForExpense";
+}
+
+<h2>getCategoryForExpense</h2>
+
+<div>
+    <table>
+        <tr>
+            <th>
+                <div class="form-group" style="color:black">
+
+                    <label style="color:wheat">Select Category</label>
+                    @Html.LabelFor(model => model.CategoryId, "", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <select name="CategoryId" id="CategoryId">
+                        @{
+                            foreach (var item in ViewBag.category)
+                            {
+                                @*                                <option value="" style="color:black">Select Category</option>
+                                *@
+                                <option value="@item.CategoryId" style="color: black">@item.CategoryName</option>
+                            }
+                        }
+
+                    </select>
+                    <input type="submit" value="Submit" id="Cat" class="btn button-info" />
+                    </div>
+            </th>
+        </tr>
+    </table>
+</div>
+@section scripts{
+
+    <script>
+
+        var button = document.getElementById("Cat");
+        button.onclick = function () {
+            var select = document.getElementById("CategoryId");
+            
+            categoryid = select[select.selectedIndex].value; //value selected in select
+            
+            window.location.href='@Url.Action("getexpenseByCategory","Category")?categoryid=' + categoryid ;
+        }
+    </script>
+}

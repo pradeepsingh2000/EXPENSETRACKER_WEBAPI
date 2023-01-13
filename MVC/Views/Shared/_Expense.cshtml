@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MVC.Models.ExpenseViewModel>
+
+
+
+
+<div class="row">
+    <div >
+        
+        <table class="table" style="border: 2px solid ;border-style:solid;border-color:orangered">
+
+            <tr class="info">
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ExpenseDate)
+                </th>
+               
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpenseDate)
+                    </td>
+                    
+                </tr>
+            }
+
+        </table>
+    </div>
+   
+</div>
+
+
+@section scripts{
+
+    <script>
+        $(function () {
+            var successmsg = '@TempData["SuccesMessage"]'
+            if (successmsg != '')
+                alertify.success(successmsg);
+        });
+
+        function Delete(id) {
+            alertify.confirm('Budget ', 'Are you Sure to delete ', function () {
+                window.location.href='@Url.Action("Delete","Expense")/'+id;
+            }, null);
+
+        }
+    </script>
+
+}
+

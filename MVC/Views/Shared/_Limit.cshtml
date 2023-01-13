@@ -1,0 +1,27 @@
+﻿
+@model IEnumerable<MVC.Models.mvcBudget>
+
+
+<table class="table" style="border: 2px solid ;border-style:solid;border-color:deepskyblue;height:auto;width:40%">
+    <tr class="danger">
+
+       
+        <th>
+            @Html.DisplayName("Total Expense Limit")
+        </th>
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Money_Limit)
+            </td>
+            
+        </tr>
+    }
+
+</table>
+
+

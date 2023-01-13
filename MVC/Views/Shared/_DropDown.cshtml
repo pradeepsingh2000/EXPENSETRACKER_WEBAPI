@@ -1,0 +1,24 @@
+﻿@model MVC.Models.mvcCategory
+<div>
+    <table>
+        <tr>
+            <th>
+                <div class="form-group" style="color:black">
+                    <h4 style="color:white;background-color:orangered">View By Category</></h4>
+                    <label  style="color:white;font-size:20px">Select Category</label>
+                    @Html.LabelFor(model => model.CategoryId, "", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <select  name="CategoryId" id="CategoryId" style="height:30px">
+                        @{
+                            foreach (var item in ViewBag.category)
+                            {
+                                <option value="@item.CategoryId" style="color: black">@item.CategoryName</option>
+                            }
+                        }
+
+                    </select>
+                    <input type="submit" value="Submit" id="Cat" class="btn btn-info" />
+                </div>
+            </th>
+        </tr>
+    </table>
+</div>
